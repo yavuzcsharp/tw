@@ -1,0 +1,36 @@
+var totalFollowCount = 3; // Kaç kişi takip etmek istiyorsan buraya yazacaksınız.
+var followIntervalSeconds = 5; // Takip işleminin her kaç saniyede bir gerçekleştirileceğini ayarlayın
+  
+function clickFollowButton() {
+    var followButtons = document.querySelectorAll('span');
+    var followMade = false; //
+  
+    for (var i = 0; i < followButtons.length; i++) {
+        if (followButtons[i].textContent == "Follow") {
+            followButtons[i].click();
+            totalFollowCount++; //
+            followMade = true; //
+            break; // İlk bulunan "Follow"
+        }
+    }
+      
+    if (followMade) {
+        console.log("%c1 takip yapıldı", "color: black; background-color: yellow;"); // LOG COLOR
+    }
+}
+  
+function followEveryXSeconds() {
+    clickFollowButton();
+    setTimeout(followEveryXSeconds, followIntervalSeconds * 1000); //
+}
+  
+// İlk takip işlemini başlat
+followEveryXSeconds();
+  
+// Toplam takip sayısını görüntüle
+function showTotalFollowCount() {
+    console.log("Toplam takip sayısı: " + totalFollowCount);
+}
+  
+//
+setInterval(showTotalFollowCount, 30000);
